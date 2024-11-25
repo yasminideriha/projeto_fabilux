@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Minha Aplicação{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    
+</head>
+<body>
+
+    <header>
+        
+        <div class="esquerda">
+            <img class="logo" src="{% static 'img/logoyasmineisabella.png' %}" alt="">
+            
+          
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-toggle">☰</label>
+            
+            <nav class="menu">
+                <a class="btn" href="#">Home</a>
+                <a class="btn" href="{% url 'produto_list' %}">Produtos</a>
+                <a class="btn" href="{% url 'categoria_list' %}">Categoria</a>
+                <a class="btn" href="{% url 'movimentacao_list' %}">Movimentacao</a>
+            </nav>
+        </div>
+    
+        <div class="direita">
+            <a class="btn" href="{% url 'perfil' %}">Perfil</a>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.3rem;">Sair</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+    {%block content%}{%endblock%}
+    </div>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>
